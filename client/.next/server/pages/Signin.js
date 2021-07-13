@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nookies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nookies */ "nookies");
 /* harmony import */ var nookies__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nookies__WEBPACK_IMPORTED_MODULE_3__);
 
-var _jsxFileName = "C:\\Users\\srsah\\Desktop\\graphql-server\\client\\pages\\Signin.js";
+var _jsxFileName = "C:\\Users\\srsah\\Desktop\\CaseBook\\client\\pages\\Signin.js";
 
 
 
