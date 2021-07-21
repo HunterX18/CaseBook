@@ -2,7 +2,6 @@ import { addCustomerMutation } from "../../components/queries";
 import { initializeApollo } from "../../components/utils/apollo";
 import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
-import { secret_key } from "../../keys";
 
 const signup = async (req, res) => {
 	const { name, password, email, type, role } = req.body;
@@ -14,7 +13,7 @@ const signup = async (req, res) => {
 			variables: { name, password, email, type, role, operation: "ADD" },
 		});
 		const { _id, cart, orders } = data.addCustomer;
-		const token = jwt.sign({ _id, name, email }, secret_key);
+		const token = jwt.sign({ _id, name, email }, process.env.SECRET_KEY);
 		res.setHeader(
 			"Set-Cookie",
 			serialize("auth", token, {
