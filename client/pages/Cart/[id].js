@@ -19,15 +19,15 @@ const Cart = ({ data: { cart }, price }) => {
 	const [cartOperation] = useMutation(addToCartMutation);
 	const [checkout] = useMutation(checkoutMutation);
 
-	const handleRemoveFromCart = async (book) => {
+	const handleRemoveFromCart = async ({ item, quantity }) => {
 		const newCart = await cartOperation({
 			variables: {
-				bookId: book._id,
+				bookId: item._id,
 				type: "REMOVE",
 				customerId: uid,
 			},
 		});
-		setTotalprice((prevPrice) => prevPrice - book.price);
+		setTotalprice((prevPrice) => prevPrice - item.price * quantity);
 		setMycart(newCart.data.addToCart);
 	};
 
@@ -37,6 +37,9 @@ const Cart = ({ data: { cart }, price }) => {
 		Router.push("/");
 	};
 
+	if (mycart.length == 0) {
+		return <h1>No items in your Cart :(</h1>;
+	}
 	return (
 		<div style={{ padding: "20px" }}>
 			{mycart &&
@@ -78,7 +81,9 @@ const Cart = ({ data: { cart }, price }) => {
 													type="button"
 													className="btn btn-primary"
 													style={{ padding: "2px", margin: "2px" }}
-													onClick={() => handleRemoveFromCart(item)}
+													onClick={() =>
+														handleRemoveFromCart({ item, quantity })
+													}
 												>
 													Remove From Cart
 												</button>
